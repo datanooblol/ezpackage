@@ -38,7 +38,7 @@ class EzPackage:
 
 def setup_template():
     # path = os.path.join(os.getcwd(), 'ezpackage', 'ezpackage', 'templates', 'setup_template.txt')
-    template_str = resources.files('ezpackage.ezpackage.templates').joinpath('setup_template.txt').open("r").read()
+    template_str = resources.files('ezpackage.ezpackage').joinpath('setup_template.txt').open("r").read()
     # path = os.path.join('.', 'templates','setup_template.txt')
     # with open(path, 'r') as f:
     #     template_str = f.read()
