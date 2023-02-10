@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 # Setting up
 setup(
     name="ezpackage",
-    version="0.0.1",
+    version="v0.0.1",
     author="datanooblol",
     author_email="data.noob.lol@gmail.com",
     description="This is an easy way to write your own package.",
