@@ -7,7 +7,7 @@ with open("README.md", "r") as f:
 # Setting up
 setup(
     name="ezpackage",
-    version="0.1.1",
+    version="0.1.2",
     license='MIT',    
     author="datanooblol",
     author_email="data.noob.lol@gmail.com",
