@@ -50,7 +50,7 @@ class EzPackage:
         with open(os.path.join(package_dir, 'setup.py'), 'w') as f:
             f.write(template_str)            
             
-    def run(self, 
+    def create_setup_py(self, 
             package_dir : str,
            ):
         """
