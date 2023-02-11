@@ -1,7 +1,29 @@
-# ezpackage
-This package helps a developer to build a python package easier  
+# ezpackage  
+[![PyPI Latest Release](https://img.shields.io/pypi/v/ezpackage)](https://pypi.org/project/ezpackage/) 
+[![Downloads](https://img.shields.io/pypi/dm/ezpackage)](https://pypi.org/project/ezpackage/)
+[![Repo Size](https://img.shields.io/github/repo-size/datanooblol/ezpackage)](https://pypi.org/project/ezpackage/)
+[![License](https://img.shields.io/pypi/l/ezpackage)](https://pypi.org/project/ezpackage/)
+[![Release Date](https://img.shields.io/github/release-date/datanooblol/ezpackage)](https://pypi.org/project/ezpackage/)
 
-Steps to follw:
+## What is ezpackage?
+
+**ezpackage** is a Python package for building and sharing your python package in an easy way.  
+
+## Where to get ezpackage  
+The source code is currently hosted at GitHub:  
+https://github.com/datanooblol/ezpackage  
+
+The latest version is available at  
+[Python Package Index (PyPI)](https://pypi.org/project/ezpackage/)  
+
+```sh  
+# pip  
+pip install ezpackage  
+```  
+
+## How to use ezconfiguration  
+
+Steps to follow:
 ```python
 # import EzPackage
 from ezpackage.package_manager import EzPackage
