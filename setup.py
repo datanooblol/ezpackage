@@ -1,12 +1,13 @@
 from setuptools import setup, find_packages
 
+# README.md must be all capital letters
 with open("README.md", "r") as f:
     long_description = f.read()
 
 # Setting up
 setup(
     name="ezpackage",
-    version="v0.1.0",
+    version="0.1.1",
     license='MIT',    
     author="datanooblol",
     author_email="data.noob.lol@gmail.com",
