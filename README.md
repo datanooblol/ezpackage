@@ -30,7 +30,7 @@ from ezpackage.package_manager import EzPackage
 
 # initialize EzPackage object
 ezpkg = EzPackage(template_package_name='your_package', 
-                  template_version='v0.1.0', 
+                  template_version='your version i.e. 0.0.1', 
                   template_author_name='your_name', 
                   template_author_email='your-email@something.com', 
                   template_url='https://github.com/your-git-account/your-package',
