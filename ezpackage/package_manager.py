@@ -15,10 +15,18 @@ class EzPackage:
         your name
     template_author_email : str
         your email
+    template_url : str
+        your website i.e. template_url=https://github.com/datanooblol/ezpackage       
     template_description : str
         a package's description
+    template_install_requires : list
+        package's dependencies i.e. template_install_requires=['twine']
     template_keywords : list
-        a keywords in list format
+        a keywords in list format i.e. template_keywords=['python3', 'ez']
+    template_include_package_data : bool
+        include *.csv, *.dat, *.rst in your package. if True, then include. if not, then not include.
+    template_python_requires : str
+        a python version for your package i.e. template_python_requires='>=2.5'
         
     """
     def __init__(self,
@@ -26,18 +34,24 @@ class EzPackage:
                  template_version:str,
                  template_author_name:str,
                  template_author_email:str,
+                 template_url:str,
                  template_description:str,
+                 template_install_requires:list,
                  template_keywords:list,
                  template_include_package_data:bool=True,
+                 template_python_requires:str='>=2.5',
                 ):
         self.setup_dict = {}
         self.setup_dict['template_package_name'] = template_package_name
         self.setup_dict['template_version'] = template_version
         self.setup_dict['template_author_name'] = template_author_name
         self.setup_dict['template_author_email'] = template_author_email
+        self.setup_dict['template_url'] = template_url
         self.setup_dict['template_description'] = template_description
+        self.setup_dict['template_install_requires'] = str(template_install_requires)
         self.setup_dict['template_keywords'] = template_keywords
         self.setup_dict['template_include_package_data'] = str(template_include_package_data)
+        self.setup_dict['template_python_requires'] = template_python_requires
         
     def _setup_template(self, package_dir:str):
         template_str = pkgutil.get_data(__name__, 'templates/setup_template.txt').decode()
@@ -112,9 +126,11 @@ class EzPackage:
         password : str
             pypi password            
         """
-        dist_path = os.path.join(self.package_parent_dir, 'dist')
+        # dist_path = os.path.join(self.package_parent_dir, 'dist')
+        dist_path = os.path.join(self.package_parent_dir)
         if os.path.exists(dist_path):
-            os.system(f"twine upload -r {dist_path}/* -u {username} -p {password}")
+            os.system(f"cd {dist_path} && twine upload dist/* -u {username} -p {password}")
+            # os.system(f"twine upload -r {dist_path}/* -u {username} -p {password}")
         print("uploaded to pypi successfully")
         
     def remove_built_package(self):
