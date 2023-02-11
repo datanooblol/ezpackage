@@ -1,5 +1,6 @@
 import os
 import pkgutil
+import shutil
 
 class EzPackage:
     """
@@ -51,9 +52,36 @@ class EzPackage:
             f.write(template_str)            
             
     def create_setup_py(self, 
-            package_dir : str,
+            package_parent_dir : str,
            ):
         """
+        Examples
+        --------
+        The project structure before create_setup_py() is:
+            
+            |-package_parent_dir
+            | |-package_dir
+            | |-README.md
+
+        The project structure after create_setup_py() is:
+            
+            |-package_parent_dir
+            | |-package_dir
+            | |-README.md
+            | |-setup.py
+            
+        Parameters
+        ----------
+        package_parent_dir : str
+            a parent directory of your package. From the example project structure, package_parent_dir='/package_parent_dir'
+            
+        """
+        self.package_parent_dir = package_parent_dir
+        self._setup_template(package_parent_dir)
+        print(f"created setup.py successfully at {self.package_parent_dir}")
+
+    def build_package(self):
+        """this method builds a distribution package for uploading to pypi or install with pip somewhere else.
         Examples
         --------
         The project structure before run() is:
@@ -61,18 +89,40 @@ class EzPackage:
             |-work_dir
             | |-package_dir
             | |-README.md
+            | |-setup-.py
 
         The project structure after run() is:
             
             |-work_dir
+            | |-build
+            | |-dist            
             | |-package_dir
+            | |-package_dir.egg-info
             | |-README.md
-            | |-setup.py
-            
+            | |-setup.py            
+        """        
+        os.system(f"cd {self.package_parent_dir} && python setup.py sdist bdist_wheel")     
+        print("built successfully")
+    def upload_to_pypi(self, username:str, password:str):
+        """            
         Parameters
         ----------
-        package_dir : str
-            a directory of your package
-            
+        username : str
+            pypi username
+        password : str
+            pypi password            
         """
-        self._setup_template(package_dir)
+        dist_path = os.path.join(self.package_parent_dir, 'dist')
+        if os.path.exists(dist_path):
+            os.system(f"twine upload -r {dist_path}/* -u {username} -p {password}")
+        print("uploaded to pypi successfully")
+        
+    def remove_built_package(self):
+        msg = 'remove built package'
+        validation = input(prompt=f"Insert '{msg}' to remove your built package")
+        if validation == f'{msg}':
+            for i in ['build', 'dist', f"{self.setup_dict['template_package_name']}.egg-info"]:
+                shutil.rmtree(os.path.join(self.package_parent_dir, i))
+
+            print("removed built-package successfully")
+        
