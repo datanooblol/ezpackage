@@ -141,4 +141,6 @@ class EzPackage:
                 shutil.rmtree(os.path.join(self.package_parent_dir, i))
 
             print("removed built-package successfully")
+        else:
+            raise Exception(f"Failed to remove built-package due to invalid input '{validation}'. Try '{msg}'")
         
